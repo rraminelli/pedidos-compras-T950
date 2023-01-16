@@ -1,0 +1,20 @@
+package br.com.ada.itau950.pedidos.compras.dto;
+
+import br.com.ada.itau950.pedidos.compras.entity.Endereco;
+import br.com.ada.itau950.pedidos.compras.entity.enums.PerfilEnum;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class UsuarioSaveRequestDto {
+
+    private Long id;
+    private String nome;
+    private String cpf;
+    private String email;
+    private String senha;
+    private Endereco endereco;
+    private PerfilEnum perfil;
+
+}
