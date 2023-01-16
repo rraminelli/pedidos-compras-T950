@@ -57,6 +57,8 @@ public class ProdutoController {
             produtoDto.setNome(produto.get().getNome());
             produtoDto.setDescricao(produto.get().getDescricao());
             produtoDto.setPreco(produto.get().getPreco());
+            produtoDto.setDesconto(produto.get().getDesconto());
+            produtoDto.setEstoque(produto.get().getEstoque());
             produtoDto.setId(id);
             return ResponseEntity.ok(produtoDto);
         } else {
@@ -74,12 +76,13 @@ public class ProdutoController {
     @DeleteMapping("/{idProduto}")
     public ResponseEntity<String> delete(@PathVariable Long idProduto) {
 
-        if (idProduto == 2) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ID nao encontrado");
+        Optional<Produto> produto = produtoRepository.findById(idProduto);
+        if (produto.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
         // delete
-
+        produtoRepository.deleteById(idProduto);
         return ResponseEntity.ok().build();
     }
 
