@@ -20,17 +20,10 @@ public class UsuarioController {
         return ResponseEntity.ok().build();
     }
 
-    ////http://localhost:8080/usuarios
-    @GetMapping
-    public ResponseEntity<List<UsuarioResponseDto>> getAll() {
-        return ResponseEntity.ok().build();
-    }
-
     //http://localhost:8080/usuarios/123
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioResponseDto> getById(@PathVariable(value = "id") Long userId) {
         return ResponseEntity.ok().build();
     }
-
 
 }
