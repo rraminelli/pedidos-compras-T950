@@ -1,6 +1,5 @@
 package br.com.ada.itau950.pedidos.compras.dto;
 
-import br.com.ada.itau950.pedidos.compras.entity.Endereco;
 import br.com.ada.itau950.pedidos.compras.entity.enums.PerfilEnum;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
