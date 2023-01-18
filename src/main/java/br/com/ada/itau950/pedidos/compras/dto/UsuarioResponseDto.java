@@ -13,7 +13,7 @@ public class UsuarioResponseDto {
     private String nome;
     private String cpf;
     private String email;
-    private Endereco endereco;
+    private EnderecoDto endereco;
     private PerfilEnum perfil;
 
 }
