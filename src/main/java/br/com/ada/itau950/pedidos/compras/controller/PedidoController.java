@@ -1,7 +1,7 @@
 package br.com.ada.itau950.pedidos.compras.controller;
 
-import br.com.ada.itau950.pedidos.compras.dto.RealizarPedidoDto;
-import br.com.ada.itau950.pedidos.compras.dto.RealizarPedidoResponseDto;
+import br.com.ada.itau950.pedidos.compras.dto.request.RealizarPedidoDto;
+import br.com.ada.itau950.pedidos.compras.dto.response.RealizarPedidoResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

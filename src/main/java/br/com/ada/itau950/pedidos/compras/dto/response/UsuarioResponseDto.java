@@ -1,5 +1,6 @@
-package br.com.ada.itau950.pedidos.compras.dto;
+package br.com.ada.itau950.pedidos.compras.dto.response;
 
+import br.com.ada.itau950.pedidos.compras.dto.EnderecoDto;
 import br.com.ada.itau950.pedidos.compras.entity.Endereco;
 import br.com.ada.itau950.pedidos.compras.entity.enums.PerfilEnum;
 import lombok.Getter;

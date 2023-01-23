@@ -1,14 +1,15 @@
 package br.com.ada.itau950.pedidos.compras.controller;
 
-import br.com.ada.itau950.pedidos.compras.dto.ProdutoResponseDTO;
-import br.com.ada.itau950.pedidos.compras.dto.ProdutoSaveRequestDTO;
-import br.com.ada.itau950.pedidos.compras.dto.ProdutoSaveResponseDTO;
+import br.com.ada.itau950.pedidos.compras.dto.response.ProdutoResponseDTO;
+import br.com.ada.itau950.pedidos.compras.dto.request.ProdutoSaveRequestDTO;
+import br.com.ada.itau950.pedidos.compras.dto.response.ProdutoSaveResponseDTO;
+import br.com.ada.itau950.pedidos.compras.dto.response.ProdutosResponseListDto;
 import br.com.ada.itau950.pedidos.compras.entity.Produto;
-import br.com.ada.itau950.pedidos.compras.repository.ProdutoRepository;
 import br.com.ada.itau950.pedidos.compras.service.ProdutoService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -118,9 +119,38 @@ public class ProdutoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProdutoResponseDTO>> findAll() {
-        //select
-        return ResponseEntity.ok(new ArrayList<>());
+    public ResponseEntity<ProdutosResponseListDto> findAll(String filter, Pageable pageable) {
+
+        Page<Produto> produtos = produtoService.findAll(filter, pageable);
+
+        List<ProdutoResponseDTO> produtoResponseDTOS = new ArrayList<>();
+        for (Produto produto : produtos.getContent()) {
+            ProdutoResponseDTO produtoDto = new ProdutoResponseDTO();
+            produtoDto.setNome(produto.getNome());
+            produtoDto.setDescricao(produto.getDescricao());
+            produtoDto.setPreco(produto.getPreco());
+            produtoDto.setDesconto(produto.getDesconto());
+            produtoDto.setEstoque(produto.getEstoque());
+            produtoDto.setId(produto.getId());
+            produtoResponseDTOS.add(produtoDto);
+        }
+
+        ProdutosResponseListDto responseListDto = new ProdutosResponseListDto();
+        responseListDto.setContent(produtoResponseDTOS);
+        responseListDto.setSize(produtos.getSize());
+        responseListDto.setPage(produtos.getNumber());
+        responseListDto.setCount(produtos.getTotalElements());
+        responseListDto.setTotalPages(produtos.getTotalPages());
+
+        return ResponseEntity.ok(responseListDto);
+    }
+
+    @PostMapping("/import")
+    public ResponseEntity importProdutos() {
+
+        produtoService.importProdutos();
+
+        return ResponseEntity.noContent().build();
     }
 
 }

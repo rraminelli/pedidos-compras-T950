@@ -1,8 +1,8 @@
 package br.com.ada.itau950.pedidos.compras.controller;
 
-import br.com.ada.itau950.pedidos.compras.dto.UsuarioResponseDto;
-import br.com.ada.itau950.pedidos.compras.dto.UsuarioSaveRequestDto;
-import br.com.ada.itau950.pedidos.compras.dto.UsuarioSaveResponseDto;
+import br.com.ada.itau950.pedidos.compras.dto.response.UsuarioResponseDto;
+import br.com.ada.itau950.pedidos.compras.dto.request.UsuarioSaveRequestDto;
+import br.com.ada.itau950.pedidos.compras.dto.response.UsuarioSaveResponseDto;
 import br.com.ada.itau950.pedidos.compras.entity.Endereco;
 import br.com.ada.itau950.pedidos.compras.entity.Usuario;
 import br.com.ada.itau950.pedidos.compras.service.UsuarioService;

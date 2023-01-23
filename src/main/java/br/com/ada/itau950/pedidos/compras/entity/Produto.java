@@ -1,9 +1,7 @@
 package br.com.ada.itau950.pedidos.compras.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -12,6 +10,8 @@ import java.math.BigDecimal;
 @ToString
 @Entity
 @Table(name = "produto")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Produto {
 
     @Id

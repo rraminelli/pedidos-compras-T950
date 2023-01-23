@@ -1,9 +1,7 @@
-package br.com.ada.itau950.pedidos.compras.dto;
+package br.com.ada.itau950.pedidos.compras.dto.response;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import java.math.BigDecimal;
 
 @Getter
 @Setter

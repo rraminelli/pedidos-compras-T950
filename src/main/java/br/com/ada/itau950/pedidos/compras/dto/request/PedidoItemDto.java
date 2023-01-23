@@ -1,4 +1,4 @@
-package br.com.ada.itau950.pedidos.compras.dto;
+package br.com.ada.itau950.pedidos.compras.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;
