@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class ProdutoController {
         this.produtoService = produtoService;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     public ResponseEntity<ProdutoSaveResponseDTO> save(@RequestBody @Valid ProdutoSaveRequestDTO produtoRequest) {
 
@@ -49,6 +51,7 @@ public class ProdutoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(produtoResponse);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping("/{idProduto}")
     public ResponseEntity update(@PathVariable Long idProduto, @RequestBody ProdutoSaveRequestDTO produtoRequest) {
 
@@ -89,6 +92,7 @@ public class ProdutoController {
         }
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PatchMapping("/{idProduto}/{qtdeEstoque}")
     public ResponseEntity updateEstoque(@PathVariable Long idProduto, @PathVariable Integer qtdeEstoque) {
         //atualiza estoque
@@ -105,6 +109,7 @@ public class ProdutoController {
         }
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/{idProduto}")
     public ResponseEntity<String> delete(@PathVariable Long idProduto) {
 
@@ -145,6 +150,7 @@ public class ProdutoController {
         return ResponseEntity.ok(responseListDto);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping("/import")
     public ResponseEntity importProdutos() {
 

@@ -3,7 +3,9 @@ package br.com.ada.itau950.pedidos.compras.service.pedido;
 import br.com.ada.itau950.pedidos.compras.dto.request.SendEmailDto;
 import br.com.ada.itau950.pedidos.compras.entity.Pedido;
 import br.com.ada.itau950.pedidos.compras.entity.enums.StatusPedidoEnum;
+import br.com.ada.itau950.pedidos.compras.service.SendEmailService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +16,13 @@ import java.time.format.DateTimeFormatter;
 @Order(40)
 public class EnviarEmailDepVendas implements ValidarPedido {
 
-    //final String emailDepVendas;
-    //final SendEmailService sendEmailService;
+    final String emailDepVendas;
+    final SendEmailService sendEmailService;
 
-    /*public EnviarEmailDepVendas(@Value("${app.email.vendas}") String emailDepVendas, SendEmailService sendEmailService) {
+    public EnviarEmailDepVendas(@Value("${app.email.vendas}") String emailDepVendas, SendEmailService sendEmailService) {
         this.emailDepVendas = emailDepVendas;
         this.sendEmailService = sendEmailService;
-    }*/
+    }
 
     public void validar(Pedido pedido) {
         log.info("EnviarEmailDepVendas");
@@ -33,11 +35,11 @@ public class EnviarEmailDepVendas implements ValidarPedido {
 
         final SendEmailDto sendEmailDto = SendEmailDto.builder()
                 .assunto("Novo pedido de compras")
-                //.para(emailDepVendas)
+                .para(emailDepVendas)
                 .mensagem(mensagem)
                 .build();
 
-        //sendEmailService.send(sendEmailDto);
+        sendEmailService.send(sendEmailDto);
 
     }
 
