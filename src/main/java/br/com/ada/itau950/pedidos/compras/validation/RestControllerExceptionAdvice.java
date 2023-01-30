@@ -28,6 +28,12 @@ public class RestControllerExceptionAdvice {
         return ResponseEntity.badRequest().body(errorList);
     }
 
+    @ExceptionHandler({RuntimeException.class})
+    public ResponseEntity<ErrorMessage> handleMethodRuntimeException(RuntimeException ex) {
+        ErrorMessage errorMessage = new ErrorMessage("", ex.getMessage());
+        return ResponseEntity.badRequest().body(errorMessage);
+    }
+
     @Getter
     @Setter
     @NoArgsConstructor
